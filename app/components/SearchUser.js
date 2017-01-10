@@ -11,11 +11,11 @@ export default class SearchUser extends Component {
 		e.preventDefault();
 
 		GitHubUser.getByUserName(this.refs.username.value).then((response) => {
-			console.log(response);
+			this.props.updateUser(response.data);
 		});
 
 		GitHubUser.getReposByUserName(this.refs.username.value).then((response) => {
-			console.log(response);
+			this.props.updateRepos(response.data);
 		});
 	}
 

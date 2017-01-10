@@ -21506,19 +21506,38 @@
 	var GitHub = function (_Component) {
 		_inherits(GitHub, _Component);
 
-		function GitHub() {
+		function GitHub(props) {
 			_classCallCheck(this, GitHub);
 
-			return _possibleConstructorReturn(this, (GitHub.__proto__ || Object.getPrototypeOf(GitHub)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (GitHub.__proto__ || Object.getPrototypeOf(GitHub)).call(this, props));
+
+			_this.updateUser = _this.updateUser.bind(_this);
+			_this.updateRepos = _this.updateRepos.bind(_this);
+
+			_this.state = {
+				user: null,
+				repos: []
+			};
+			return _this;
 		}
 
 		_createClass(GitHub, [{
+			key: 'updateUser',
+			value: function updateUser(user) {
+				this.setState({ user: user });
+			}
+		}, {
+			key: 'updateRepos',
+			value: function updateRepos(repos) {
+				this.setState({ repos: repos });
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
 					{ className: 'container' },
-					_react2.default.createElement(_SearchUser2.default, null)
+					_react2.default.createElement(_SearchUser2.default, { updateUser: this.updateUser, updateRepos: this.updateRepos })
 				);
 			}
 		}]);
@@ -21571,14 +21590,16 @@
 		_createClass(SearchUser, [{
 			key: 'handleSubmit',
 			value: function handleSubmit(e) {
+				var _this2 = this;
+
 				e.preventDefault();
 
 				_GitHubUser2.default.getByUserName(this.refs.username.value).then(function (response) {
-					console.log(response);
+					_this2.props.updateUser(response.data);
 				});
 
 				_GitHubUser2.default.getReposByUserName(this.refs.username.value).then(function (response) {
-					console.log(response);
+					_this2.props.updateRepos(response.data);
 				});
 			}
 		}, {

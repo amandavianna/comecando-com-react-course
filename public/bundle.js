@@ -23233,6 +23233,11 @@
 		return userInfo;
 	};
 
+	UserInfo.propTypes = {
+		user: _react2.default.PropTypes.object,
+		repos: _react2.default.PropTypes.array
+	};
+
 	exports.default = UserInfo;
 
 /***/ }

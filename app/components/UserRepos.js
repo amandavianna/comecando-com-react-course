@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 
 export default class UserRepos extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {reposCount: 0}
+	}
+
+	componentWillReceiveProps(props) {
+		console.log(props);
+		this.setState({reposCount: props.repos.length});
+	}
+
 	render() {
-		const repos = this.props.repos.map((repo, key) => {
+		const repos = this.props;
+		const reposList = this.props.repos.map((repo, key) => {
 			return (
 				<div key={key} className="thumbnail">
 					<div className="caption">
@@ -21,7 +33,8 @@ export default class UserRepos extends Component {
 
 		return (
 			<div>
-				{repos}
+				<h2>{this.state.reposCount} repositories</h2>
+				{reposList}
 			</div>
 		);
 	}

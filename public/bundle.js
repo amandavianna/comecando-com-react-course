@@ -21495,6 +21495,10 @@
 
 	var _SearchUser2 = _interopRequireDefault(_SearchUser);
 
+	var _UserInfo = __webpack_require__(206);
+
+	var _UserInfo2 = _interopRequireDefault(_UserInfo);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21537,7 +21541,8 @@
 				return _react2.default.createElement(
 					'div',
 					{ className: 'container' },
-					_react2.default.createElement(_SearchUser2.default, { updateUser: this.updateUser, updateRepos: this.updateRepos })
+					_react2.default.createElement(_SearchUser2.default, { updateUser: this.updateUser, updateRepos: this.updateRepos }),
+					_react2.default.createElement(_UserInfo2.default, { user: this.state.user, repos: this.state.repos })
 				);
 			}
 		}]);
@@ -21644,6 +21649,12 @@
 	}(_react.Component);
 
 	exports.default = SearchUser;
+
+
+	SearchUser.propTypes = {
+		updateUser: _react2.default.PropTypes.func.isRequired,
+		updateRepos: _react2.default.PropTypes.func.isRequired
+	};
 
 /***/ },
 /* 180 */
@@ -23160,6 +23171,69 @@
 	  };
 	};
 
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var UserInfo = function UserInfo(_ref) {
+		var user = _ref.user,
+		    repos = _ref.repos;
+
+
+		var userInfo = user ? _react2.default.createElement(
+			"div",
+			{ className: "row" },
+			_react2.default.createElement(
+				"div",
+				{ className: "col-lg-4" },
+				_react2.default.createElement("img", { className: "img-circle", src: user.avatar_url, alt: "avatar", width: "140", height: "140" }),
+				_react2.default.createElement(
+					"h2",
+					null,
+					user.login
+				),
+				_react2.default.createElement(
+					"p",
+					null,
+					user.name
+				),
+				_react2.default.createElement(
+					"p",
+					null,
+					"Followers: ",
+					user.followers,
+					" / Following: ",
+					user.following
+				),
+				_react2.default.createElement(
+					"p",
+					null,
+					_react2.default.createElement(
+						"a",
+						{ className: "btn btn-default", href: user.html_url, role: "button" },
+						"View details"
+					)
+				)
+			)
+		) : null;
+
+		return userInfo;
+	};
+
+	exports.default = UserInfo;
 
 /***/ }
 /******/ ]);

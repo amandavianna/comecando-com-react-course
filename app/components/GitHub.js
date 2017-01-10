@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchUser from './SearchUser';
+import UserInfo from './UserInfo';
 
 export default class GitHub extends Component {
 	constructor(props) {
@@ -26,7 +27,8 @@ export default class GitHub extends Component {
 		return (
 			<div className="container">
 				<SearchUser updateUser = {this.updateUser} updateRepos = {this.updateRepos}/>
+				<UserInfo user={this.state.user} repos={this.state.repos} />
 	    </div>
 		);
-  	}
+  }
 }

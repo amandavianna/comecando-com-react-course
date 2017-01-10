@@ -1,4 +1,5 @@
 import React from 'react';
+import UserRepos from './UserRepos';
 
 const UserInfo = ({ user, repos }) => {
 
@@ -11,6 +12,9 @@ const UserInfo = ({ user, repos }) => {
 				<p>{user.name}</p>
 				<p>Followers: {user.followers} / Following: {user.following}</p>
 				<p><a className="btn btn-default" href={user.html_url} role="button">View details</a></p>
+			</div>
+			<div className="col-lg-8">
+				<UserRepos repos={repos} />
 			</div>
 		</div>
 	) : null;

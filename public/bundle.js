@@ -23176,7 +23176,7 @@
 /* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -23186,6 +23186,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _UserRepos = __webpack_require__(207);
+
+	var _UserRepos2 = _interopRequireDefault(_UserRepos);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var UserInfo = function UserInfo(_ref) {
@@ -23194,39 +23198,44 @@
 
 
 		var userInfo = user ? _react2.default.createElement(
-			"div",
-			{ className: "row" },
+			'div',
+			{ className: 'row' },
 			_react2.default.createElement(
-				"div",
-				{ className: "col-lg-4" },
-				_react2.default.createElement("img", { className: "img-circle", src: user.avatar_url, alt: "avatar", width: "140", height: "140" }),
+				'div',
+				{ className: 'col-lg-4' },
+				_react2.default.createElement('img', { className: 'img-circle', src: user.avatar_url, alt: 'avatar', width: '140', height: '140' }),
 				_react2.default.createElement(
-					"h2",
+					'h2',
 					null,
 					user.login
 				),
 				_react2.default.createElement(
-					"p",
+					'p',
 					null,
 					user.name
 				),
 				_react2.default.createElement(
-					"p",
+					'p',
 					null,
-					"Followers: ",
+					'Followers: ',
 					user.followers,
-					" / Following: ",
+					' / Following: ',
 					user.following
 				),
 				_react2.default.createElement(
-					"p",
+					'p',
 					null,
 					_react2.default.createElement(
-						"a",
-						{ className: "btn btn-default", href: user.html_url, role: "button" },
-						"View details"
+						'a',
+						{ className: 'btn btn-default', href: user.html_url, role: 'button' },
+						'View details'
 					)
 				)
+			),
+			_react2.default.createElement(
+				'div',
+				{ className: 'col-lg-8' },
+				_react2.default.createElement(_UserRepos2.default, { repos: repos })
 			)
 		) : null;
 
@@ -23239,6 +23248,98 @@
 	};
 
 	exports.default = UserInfo;
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var UserRepos = function (_Component) {
+		_inherits(UserRepos, _Component);
+
+		function UserRepos() {
+			_classCallCheck(this, UserRepos);
+
+			return _possibleConstructorReturn(this, (UserRepos.__proto__ || Object.getPrototypeOf(UserRepos)).apply(this, arguments));
+		}
+
+		_createClass(UserRepos, [{
+			key: "render",
+			value: function render() {
+				var repos = this.props.repos.map(function (repo, key) {
+					return _react2.default.createElement(
+						"div",
+						{ key: key, className: "thumbnail" },
+						_react2.default.createElement(
+							"div",
+							{ className: "caption" },
+							_react2.default.createElement(
+								"h3",
+								null,
+								repo.name,
+								_react2.default.createElement(
+									"span",
+									{ className: "badge" },
+									repo.stargazers_count,
+									" STARS"
+								)
+							),
+							_react2.default.createElement(
+								"p",
+								null,
+								repo.description
+							),
+							_react2.default.createElement(
+								"p",
+								null,
+								_react2.default.createElement(
+									"a",
+									{ href: repo.html_url, className: "btn btn-primary", role: "button" },
+									"Repository"
+								),
+								_react2.default.createElement(
+									"a",
+									{ href: repo.html_url + '/issues', className: "btn btn-default", role: "button" },
+									"Issues (",
+									repo.open_issues,
+									") "
+								)
+							)
+						)
+					);
+				});
+
+				return _react2.default.createElement(
+					"div",
+					null,
+					repos
+				);
+			}
+		}]);
+
+		return UserRepos;
+	}(_react.Component);
+
+	exports.default = UserRepos;
 
 /***/ }
 /******/ ]);

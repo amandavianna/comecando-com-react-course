@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GitHubUser from '../services/GitHubUser';
 
 export default class SearchUser extends Component {
 	constructor(props) {
@@ -8,7 +9,14 @@ export default class SearchUser extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(this.refs.username.value);
+
+		GitHubUser.getByUserName(this.refs.username.value).then((response) => {
+			console.log(response);
+		});
+
+		GitHubUser.getReposByUserName(this.refs.username.value).then((response) => {
+			console.log(response);
+		});
 	}
 
 	render() {
@@ -28,3 +36,4 @@ export default class SearchUser extends Component {
 		);
 	}
 }
+
